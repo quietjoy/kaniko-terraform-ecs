@@ -8,6 +8,7 @@ The infrastructure is built in terraform and leverages the kaniko project for bu
 
 + A simple nginx container image with example html
 + Cloudwatch events to regularly build the containers
++ Github webhooks for building and deploying container on any change to the `app/` directory
 + Slack notifications for container builds and ecs deployments
 + Email notifications that include container vuln scan information
 
