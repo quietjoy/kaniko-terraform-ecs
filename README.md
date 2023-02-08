@@ -17,3 +17,12 @@ The infrastructure is built in terraform and leverages the kaniko project for bu
 + https://aws.amazon.com/blogs/containers/building-container-images-on-amazon-ecs-on-aws-fargate/
 + https://github.com/GoogleContainerTools/kaniko
 
+## TODO
+
++ ensure that terraform infrastructure deploys
+    + create 2 ecr repos
++ create kaniko container and deploy to ecr
++ create nginx container and deploy to ecr
++ go through aws blog and create intial build on kaniko
++ add cloudwatch events and github webhook - ensure that e2e completes
++ add slack and email notifications
