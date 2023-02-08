@@ -3,11 +3,12 @@ provider "aws" {
 }
 
 locals {
-  identifier           = "kaniko"
-  vpc_cidr             = "10.40.0.0/16"
-  public_subnet_cidrs  = ["10.40.0.0/24", "10.40.16.0/24"]
-  private_subnet_cidrs = ["10.40.32.0/24", "10.40.48.0/24"]
-  availability_zones   = ["us-east-1a", "us-east-1b"]
+  identifier             = "kaniko"
+  vpc_cidr               = "10.40.0.0/16"
+  public_subnet_cidrs    = ["10.40.0.0/24", "10.40.16.0/24"]
+  private_subnet_cidrs   = ["10.40.32.0/24", "10.40.48.0/24"]
+  availability_zones     = ["us-east-1a", "us-east-1b"]
+  inbound_cidr_whitelist = ["69.243.229.207/32"]
 }
 
 module "networking" {
@@ -19,3 +20,11 @@ module "networking" {
   availability_zones   = local.availability_zones
 }
 
+module "ecs" {
+  source                 = "./modules/ecs"
+  identifier             = local.identifier
+  vpc_id                 = module.networking.vpc_id
+  public_subnet_ids      = module.networking.public_subnet_ids
+  private_subnet_ids     = module.networking.private_subnet_ids
+  inbound_cidr_whitelist = local.inbound_cidr_whitelist
+}
