@@ -22,3 +22,8 @@ variable "inbound_cidr_whitelist" {
   type        = list(string)
   description = "CIDRs allowed to access the ALB"
 }
+
+variable "kankio_ecr_url" {
+  type        = string
+  description = "URL of the Kankio ECR repository"
+}

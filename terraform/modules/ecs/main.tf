@@ -87,6 +87,7 @@ data "template_file" "ecs_task_definition" {
 
   vars = {
     identifier = var.identifier
+    ecr_url    = var.kankio_ecr_url
   }
 }
 

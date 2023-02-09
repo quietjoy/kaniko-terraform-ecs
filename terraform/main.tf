@@ -20,6 +20,11 @@ module "networking" {
   availability_zones   = local.availability_zones
 }
 
+module "ecr" {
+  source     = "./modules/ecr"
+  identifier = local.identifier
+}
+
 module "ecs" {
   source                 = "./modules/ecs"
   identifier             = local.identifier
@@ -27,4 +32,5 @@ module "ecs" {
   public_subnet_ids      = module.networking.public_subnet_ids
   private_subnet_ids     = module.networking.private_subnet_ids
   inbound_cidr_whitelist = local.inbound_cidr_whitelist
+  kankio_ecr_url         = module.ecr.builder_ecr_repository_url
 }
