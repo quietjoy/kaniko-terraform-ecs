@@ -27,3 +27,13 @@ variable "kankio_ecr_url" {
   type        = string
   description = "URL of the Kankio ECR repository"
 }
+
+variable "app_ecr_url" {
+  type        = string
+  description = "URL of the application ECR repository (where kaniko pushes the image)"
+}
+
+variable "repo_url" {
+  type        = string
+  description = "Path to the repository for Kaniko to build"
+}

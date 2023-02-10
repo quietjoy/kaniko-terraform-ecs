@@ -63,6 +63,21 @@ resource "aws_iam_policy" "ecs_policy" {
         ],
         Resource = "arn:aws:logs:*:*:*",
         Effect   = "Allow"
+      },
+      {
+
+        Effect : "Allow",
+        Action : [
+          "ecr:GetAuthorizationToken",
+          "ecr:InitiateLayerUpload",
+          "ecr:UploadLayerPart",
+          "ecr:CompleteLayerUpload",
+          "ecr:PutImage",
+          "ecr:BatchGetImage",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:GetDownloadUrlForLayer"
+        ],
+        Resource : "*"
       }
     ]
   })
@@ -86,8 +101,10 @@ data "template_file" "ecs_task_definition" {
   template = file("${path.module}/task_definition.json.tpl")
 
   vars = {
-    identifier = var.identifier
-    ecr_url    = var.kankio_ecr_url
+    identifier     = var.identifier
+    kankio_ecr_url = var.kankio_ecr_url
+    app_ecr_url    = var.app_ecr_url
+    repo_url       = var.repo_url
   }
 }
 
@@ -102,7 +119,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
 }
 
 resource "aws_ecs_service" "service" {
-  name            = "${var.identifier}-service"
+  name            = "${var.identifier}-executor"
   cluster         = aws_ecs_cluster.cluster.id
   task_definition = aws_ecs_task_definition.ecs_task_definition.arn
   desired_count   = 1

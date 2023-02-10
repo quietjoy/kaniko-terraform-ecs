@@ -9,6 +9,7 @@ locals {
   private_subnet_cidrs   = ["10.40.32.0/24", "10.40.48.0/24"]
   availability_zones     = ["us-east-1a", "us-east-1b"]
   inbound_cidr_whitelist = ["69.243.229.207/32"]
+  repo_url               = "https://github.com/quietjoy/kaniko-terraform-ecs"
 }
 
 module "networking" {
@@ -33,4 +34,6 @@ module "ecs" {
   private_subnet_ids     = module.networking.private_subnet_ids
   inbound_cidr_whitelist = local.inbound_cidr_whitelist
   kankio_ecr_url         = module.ecr.builder_ecr_repository_url
+  app_ecr_url            = module.ecr.app_ecr_repository_url
+  repo_url               = local.repo_url
 }
