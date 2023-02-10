@@ -17,6 +17,12 @@ The infrastructure is built in terraform and leverages the kaniko project for bu
 + https://aws.amazon.com/blogs/containers/building-container-images-on-amazon-ecs-on-aws-fargate/
 + https://github.com/GoogleContainerTools/kaniko
 
+## Left Off
+
+```
+Resourceinitializationerror: unable to pull secrets or registry auth: execution resource retrieval failed: unable to retrieve ecr registry auth: service call has been retried 3 time(s): RequestError: send request failed caused by: Post "https://api.ecr.us-east-1.amazonaws.com/": dial tcp 67.220.240.139:443: i/o timeout
+```
+
 ## TODO
 
 + ensure that terraform infrastructure deploys
