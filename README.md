@@ -16,6 +16,7 @@ The infrastructure is built in terraform and leverages the kaniko project for bu
 
 + https://aws.amazon.com/blogs/containers/building-container-images-on-amazon-ecs-on-aws-fargate/
 + https://github.com/GoogleContainerTools/kaniko
++ https://aws.amazon.com/blogs/containers/metrics-and-traces-collection-from-amazon-ecs-using-aws-distro-for-opentelemetry-with-dynamic-service-discovery/
 
 ## Left Off
 
@@ -25,10 +26,12 @@ Resourceinitializationerror: unable to pull secrets or registry auth: execution 
 
 ## TODO
 
-+ ensure that terraform infrastructure deploys
-+ create kaniko container and deploy to ecr
-+ create nginx container and deploy to ecr
+- ensure that terraform infrastructure deploys
+- create kaniko container and deploy to ecr
 + go through aws blog and create intial build on kaniko
++ create nginx container and deploy to ecr
++ deploy aws distro for open telemetry next to nginx
++ register services on aws cloud map
 + add cloudwatch events and github webhook - ensure that e2e completes
 + add slack and email notifications
 + Finish documentation
