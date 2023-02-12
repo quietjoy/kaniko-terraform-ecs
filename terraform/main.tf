@@ -9,7 +9,7 @@ locals {
   private_subnet_cidrs   = ["10.40.32.0/24", "10.40.48.0/24"]
   availability_zones     = ["us-east-1a", "us-east-1b"]
   inbound_cidr_whitelist = ["69.243.229.207/32"]
-  repo_url               = "https://github.com/quietjoy/kaniko-terraform-ecs"
+  repo_url               = "github.com/quietjoy/kaniko-terraform-ecs"
 }
 
 module "networking" {

@@ -1,6 +1,7 @@
 [{
 	"name": "${identifier}",
 	"image": "${kankio_ecr_url}:latest",
+	"requiresCompatibilities": ["FARGATE"],
 	"portMappings": [{
 		"containerPort": 80
 	}],
@@ -17,7 +18,7 @@
 		"--context", "git://${repo_url}",
 		"--context-sub-path", "./app",
 		"--dockerfile", "Dockerfile",
-		"--destination", "${app_ecr_url}",
+		"--destination", "${app_ecr_url}:latest",
 		"--force"
 	]
 }]
