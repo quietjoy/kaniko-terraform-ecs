@@ -68,7 +68,7 @@ resource "aws_route_table" "public_rt" {
 resource "aws_route_table" "private_rt" {
   vpc_id = aws_vpc.vpc.id
   tags = {
-    "Name" = "private-rt-${var.identifier}}"
+    "Name" = "private-rt-${var.identifier}"
   }
 }
 
@@ -85,13 +85,13 @@ resource "aws_route" "private_routes" {
 }
 
 resource "aws_route_table_association" "public_route_association" {
+  count          = length(var.public_subnet_cidrs)
   route_table_id = aws_route_table.public_rt.id
-  count          = length(aws_subnet.public)
-  subnet_id      = element(aws_subnet.public.*.id, 0)
+  subnet_id      = element(aws_subnet.public.*.id, count.index)
 }
 
 resource "aws_route_table_association" "private_route_association" {
+  count          = length(var.private_subnet_cidrs)
   route_table_id = aws_route_table.private_rt.id
-  count          = length(aws_subnet.private)
-  subnet_id      = element(aws_subnet.private.*.id, 0)
+  subnet_id      = element(aws_subnet.private.*.id, count.index)
 }

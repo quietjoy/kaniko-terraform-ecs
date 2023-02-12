@@ -4,11 +4,14 @@
 	"portMappings": [{
 		"containerPort": 80
 	}],
-	"logDriver": "awslogs",
-	"options": {
-		"awslogs-group": "kaniko-builder",
-		"awslogs-region": "us-east-1",
-		"awslogs-stream-prefix": "kaniko"
+	"logConfiguration": {
+		"logDriver": "awslogs",
+		"options": {
+			"awslogs-group": "kaniko-builder",
+			"awslogs-region": "us-east-1",
+			"awslogs-stream-prefix": "kaniko",
+			"awslogs-create-group": "true"
+		}
 	},
 	"command": [
 		"--context", "git://${repo_url}",
